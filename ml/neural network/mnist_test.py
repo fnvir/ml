@@ -1,7 +1,7 @@
 import numpy as np
 from neural_network import NeuralNetwork
 from loss_functions import MSE,CrossEntropy
-
+import activations as ac
 
 def main():
     x_train,x_test,y_train,y_test=preprocess(*load_mnist())
@@ -13,8 +13,8 @@ def main():
     import time
 
     st=time.time()
-    nn=NeuralNetwork((28*28,40,10),MSE)
-    nn.gradient_descent_stochastic(x_train,y_train,max_iter=140,show=True,regularization=0.01,batch_size=1000)
+    nn=NeuralNetwork((28*28,40,10),MSE,ac.ReLU)
+    nn.gradient_descent_stochastic(x_train,y_train,max_iter=100,show=True,regularization=0.01,batch_size=1000)
     print('\n',time.time()-st,'s\n')
 
     
