@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Activation:
     @classmethod
     def call(cls,x,deriv=False):
@@ -27,9 +28,18 @@ class tanh(Activation):
     def prime(self,x):
         return 1-np.tanh(x)**2
 
+
 class ReLU(Activation):
     def func(self,x):
-        return x*(x>=0)
+        return x*(x>0)
 
     def prime(self,x):
-        return (x>=0)*1
+        return (x>0)*1
+
+
+class LeakyReLU(Activation):
+    def func(self,x):
+        return np.maximum(x*0.001, x)
+
+    def prime(self,x):
+        return np.where(x>0,1,0.001)

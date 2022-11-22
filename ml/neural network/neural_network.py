@@ -8,7 +8,7 @@ class NeuralNetwork:
         self.cost_func=cost_func
         self.network=[]
         for i in range(1,len(shape)):
-            self.network.append(Layer(shape[i-1],shape[i],activation))
+            self.network.append(Layer(shape[i-1],shape[i],activation if i<len(shape)-1 else ac.tanh))
 
     def _forward_prop(self,inputs):
         X=inputs
